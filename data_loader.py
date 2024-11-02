@@ -20,8 +20,14 @@ def get_sampels(data_set='train'):
         # Extract instrument name from path
         instrument = audio.split('/')[-2]
         labels.append(instrument)
-        y, sr = librosa.load(audio, sr=22050, duration=4.0)
-        audios.append(y)
+        try:
+            y, sr = librosa.load(audio, sr=22050, duration=4.0, mono=True)
+            if len(y) < sr * 4:  # Ensure 4 seconds of audio
+                y = np.pad(y, (0, sr * 4 - len(y)))
+            audios.append(y)
+        except Exception as e:
+            print(f"Error loading {audio}: {str(e)}")
+            continue
     audios_numpy = np.array(audios)
     return audios_numpy, labels
 
