@@ -15,9 +15,11 @@ csv_name = CreateDataset.Name
 def get_sampels(data_set='train'):
     audios = []
     labels = []
-    path_of_audios = librosa.util.find_files(data_path + data_set)
+    path_of_audios = librosa.util.find_files(data_path + data_set, ext=['mp3'])
     for audio in path_of_audios:
-        labels.append(audio.split('train/')[1].split('_')[0])
+        # Extract instrument name from path
+        instrument = audio.split('/')[-2]
+        labels.append(instrument)
         y, sr = librosa.load(audio, sr=22050, duration=4.0)
         audios.append(y)
     audios_numpy = np.array(audios)
@@ -43,6 +45,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-

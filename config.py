@@ -2,7 +2,9 @@ class CreateDataset:
     # Name of dataset csv
     Name = 'dataset.csv'
     # Train Path
-    data_path = './dataset/'
+    data_path = './philharmonia/'
+    train_path = './philharmonia/train/'
+    test_path = './philharmonia/test/'
     # Sampling rate
     sr = 22050
     # Frame size (samples)
@@ -18,19 +20,32 @@ class CreateDataset:
     # Tonal Centroid Size
     ts = 6
     # Name of Instrument
-    Instrument =  ['bass','brass','flute','guitar','keyboard','mallet','organ','reed','string','vocal']
+    Instrument = ['banjo', 'bass clarinet', 'bassoon', 'cello', 'clarinet', 
+                  'contrabassoon', 'cor anglais', 'double bass', 'flute', 
+                  'french horn', 'guitar', 'mandolin', 'oboe', 'percussion',
+                  'saxophone', 'trombone', 'trumpet', 'tuba', 'viola', 'violin']
     # Label map
     label_map = {
-        'bass' : 1,
-        'brass' : 2,
-        'flute' : 3,
-        'guitar': 4,
-        'keyboard':5,
-        'mallet':6,
-        'organ':7,
-        'reed':8,
-        'string':9,
-        'vocal':10
+        'banjo': 1,
+        'bass clarinet': 2,
+        'bassoon': 3,
+        'cello': 4,
+        'clarinet': 5,
+        'contrabassoon': 6,
+        'cor anglais': 7,
+        'double bass': 8,
+        'flute': 9,
+        'french horn': 10,
+        'guitar': 11,
+        'mandolin': 12,
+        'oboe': 13,
+        'percussion': 14,
+        'saxophone': 15,
+        'trombone': 16,
+        'trumpet': 17,
+        'tuba': 18,
+        'viola': 19,
+        'violin': 20
     }
 
     Feature_Names = ['meanSpecCentroid', 'stdSpecCentroid',
@@ -85,10 +100,9 @@ class CreateDataset:
 
 class Test_path:
     # Path for Test Files
-    data_path = './dataset/test'
+    data_path = './philharmonia/test'
 
 
 class Model:
     # Name of Model
     NAME = 'model.pkl'
-
